@@ -13,7 +13,7 @@
 
     <div v-if="currentView === 'todos'">
       <div class="todo-container">
-        <h1>Daftar Kegiatan</h1>
+        <h1> List Aktivitas</h1>
         <input type="text" v-model="newActivity.name" placeholder="Tambahkan kegiatan baru" class="form-control mb-3">
         <div class="datetime-container mb-3">
           <label for="datetime">Tanggal & Jam:</label>

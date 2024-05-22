@@ -7,7 +7,7 @@
       <h3>
         <slot name="heading"></slot>
       </h3>
-      <slot></slot>
+      <slot>This is content activity</slot>
     </div>
   </div>
 </template>
