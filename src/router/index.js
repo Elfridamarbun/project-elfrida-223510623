@@ -1,28 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ActivityList from '../components/ActivityList.vue';
-import ToDos from '../components/ToDos.vue';
-import Posts from '../components/Posts.vue';
+
+import Todos from '../views/Todos.vue';
+import Posts from '../views/Posts.vue';
+import Albums from '../views/Albums.vue';
+import Photos from '../views/Photos.vue';
 
 const routes = [
   {
-    path: '/',
-    redirect: '/todos'
-  },
-  {
     path: '/todos',
-    name: 'ToDos',
-    component: ToDos
+    name: 'Todos',
+    component: Todos,
   },
   {
     path: '/posts',
-    name: 'Posts',
-    component: Posts
-  }
+    name: 'Post',
+    component: Posts,
+  },
+  {
+    path: '/albums',
+    name: 'Albums',
+    component: Albums,
+  },
+  {
+    path: '/albums/:id',
+    name: 'Photos',
+    component: Photos,
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

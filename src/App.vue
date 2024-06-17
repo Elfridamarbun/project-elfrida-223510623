@@ -1,72 +1,64 @@
 <template>
-  <div>
-    <nav class="navbar">
-    </nav>
-    <div id="app">
-      <ActivityList/>
-    </div>
-  </div>
+  <q-layout view="hHh lpR fFf">
+    <q-header class="header">
+      <q-toolbar>
+        <q-btn-group flat class="rout-nav">
+          <router-link to="/todos">
+            <q-btn flat :outline="!isActive('/todos')" label="Todos" />
+          </router-link>
+          <router-link to="/posts">
+            <q-btn flat :outline="!isActive('/posts')" label="Posts" />
+          </router-link>
+          <router-link to="/albums">
+            <q-btn flat :outline="!isActive('/albums')" label="Albums" />
+          </router-link>
+        </q-btn-group>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <q-page>
+        <router-view />
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import ActivityList from './components/ActivityList.vue';
+import { useRoute } from 'vue-router';
 
 export default {
-  components: {
-    ActivityList
+  setup() {
+    const route = useRoute();
+    const isActive = (path) => route.path === path;
+    return {
+      isActive
+    };
   }
 };
 </script>
 
-<style>
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+<style scoped>
+
+.header {
+  background-color: #9e9e9e !important;
+  color: #ffffff !important;
+  padding: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
-.wrapper {
-  padding: 50px;
-  max-width: 600px;
-  margin: 0 auto;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+
+.rout-nav button {
+  color: #444444;
+  font-size: 16px;
 }
-nav.navbar {
-  background-color: #333;
-  color: white;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  z-index: 1000;
+
+.rout-nav a q-btn {
+  color: #616161;
+  font-size: 16px;
 }
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;
-}
-nav ul li {
-  display: inline;
-}
-nav ul li a {
-  color: white;
-  text-decoration: none;
-}
-.todo-container {
-  margin: 20px;
-}
-.datetime-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-table {
-  width: 100%;
-  margin-top: 20px;
-}
-.completed {
-  text-decoration: line-through;
+
+.rout-nav q-btn[flat][outline] {
+  border-color: #616161;
+  color: #616161;
 }
 </style>
